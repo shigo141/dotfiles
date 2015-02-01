@@ -1,6 +1,6 @@
 [user]
         name = shigo141
-        email = i.signal405gmail.com
+        email = i.signal405@gmail.com
 [core]
         editor = vim
         excludesfile = ~/.gitignore_global
