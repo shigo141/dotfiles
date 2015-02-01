@@ -148,3 +148,6 @@ case "${TERM}" in
         }
         ;;
 esac
+
+# load local setting
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
