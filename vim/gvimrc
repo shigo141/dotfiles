@@ -1,0 +1,21 @@
+set antialias
+
+" hide tool bar
+set guioptions=-T
+
+" hide scroll bar
+set guioptions=-r
+set guioptions=-l
+set guioptions=-b
+
+" hide menu
+set guioptions=-m
+
+if has('gui_macvim')
+  set tranparency=10
+  colorscheme zenburn
+else
+  colorscheme solarized
+  set background=dark
+endif
+
