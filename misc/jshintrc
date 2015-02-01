@@ -1,0 +1,20 @@
+{
+    // Enforcing options
+    "maxlen"    : 80,
+    "bitwise"   : true,      // JSでビット演算は滅多に使わないので禁止
+    "camelcase" : true,      // 変数・関数名をキャメルケースor大文字アンダースコア区切りのみとする
+    "eqeqeq"    : true,      // 等価演算子は===,!==を使用すること
+    "undef"     : true,      // 未定義の変数禁止
+    "unused"    : true,      // 未使用の変数禁止
+    "trailing"  : true,      // 行末の無駄な余白禁止
+    "curly"     : true,      // 制御部のブレース必須
+    "freeze"    : true,      // ネイティブオブジェクトのプロトタイプ変更禁止
+    "newcap"    : true,      // コンストラクタ関数は大文字始めであること
+    "noempty"   : true,      // 空のブロック禁止
+    "quotmark"  : "single",  // クォーテーションはシングルで統一する
+    // Environments options
+    // グローバル変数アクセス管理
+    "devel"     : true,
+    "jquery"    : true,
+    "node"      : true
+}

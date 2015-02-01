@@ -1,0 +1,21 @@
+[user]
+        name = shigo141
+        email = i.signal405gmail.com
+[core]
+        editor = vim
+        excludesfile = ~/.gitignore_global
+[include]
+        path = ~/.gitconfig.local
+[color]
+        ui = auto
+[alias]
+        b = branch
+        ci = commit -v
+        co = checkout
+        di = diff
+        st = status -sb
+        fix = commit --amend
+        l = log
+        lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset'
+        ls = ls-files
+        wh = whatchanged

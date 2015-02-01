@@ -1,0 +1,43 @@
+"=============================
+" vimrc plugins
+"=============================
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'glidenote/memolist.vim'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tyru/open-browser.vim'
+
+NeoBundle 'Shougo/vimproc', {
+      \ 'build': {
+      \   'mac': 'make -f make_mac.mak',
+      \   'unix': 'make -f make_unix.mak'
+      \}}
+NeoBundle 'osyo-manga/vim-watchdogs', {
+      \ 'depends': ['Shougo/vimproc',
+      \ 'thinca/vim-quickrun',
+      \ 'osyo-manga/shabadou.vim']}
+NeoBundle 'dannyob/quickfixstatus'
+NeoBundle 'jceb/vim-hier'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {
+      \ 'autoload': {
+      \   'filetypes': 'javascript',
+      \}}
+NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {
+      \ 'autoload': {
+      \   'filetypes': 'javascript',
+      \}}
+NeoBundleLazy 'elzr/vim-json',{
+      \ 'autoload': {
+      \   'filetypes': 'json',
+      \}}
+
+" Colorscheme
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'altercation/vim-colors-solarized'

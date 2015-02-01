@@ -1,0 +1,11 @@
+.DS_Store
+*.bak
+*.log
+*.idea
+tmp
+node_modules
+
+# Vim
+vim/bundle
+.netrwhist
+*~

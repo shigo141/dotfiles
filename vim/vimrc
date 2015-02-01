@@ -1,0 +1,202 @@
+"======================================
+" shigo's vimrc
+" Platform: MacOSX and Linux
+" Last Updated: 2015-02-01 16:04:48
+"======================================
+
+if &compatible
+  set nocompatible
+endif
+
+let g:mapleader = ','
+
+" Encoding
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,ucs-bom,euc-jp
+
+scriptencoding utf-8
+
+" 各種変数
+let $DOTVIM = expand('~/.vim')
+let $VIM_BUNDLE = $DOTVIM. '/bundle'
+let $NEOBUNDLE_DIR = $VIM_BUNDLE. '/neobundle'
+
+function! s:load_src(path)
+  let path = expand(a:path)
+  if filereadable(path)
+    execute 'source' path
+  endif
+endfunction
+
+" Init {{{
+filetype off
+
+if has('vim_starting')
+  if !isdirectory($NEOBUNDLE_DIR)
+    execute "!git clone git://github.com/Shougo/neobundle.vim" $NEOBUNDLE_DIR
+  endif
+  set rtp+=$NEOBUNDLE_DIR
+endif
+"}}}
+
+" Plugins {{{
+call neobundle#begin($VIM_BUNDLE)
+
+call s:load_src('~/.vim/vimrc.plugins')
+call s:load_src('~/.vim/vimrc.plugins_setting')
+
+call neobundle#end()
+
+filetype plugin indent on
+
+NeoBundleCheck
+"}}}
+
+" Display {{{
+
+if !has('gui_running')
+  set t_Co=256
+  colorscheme jellybeans
+endif
+
+syntax on
+set number
+set showmatch
+set ruler
+set wildmenu
+set wildmode=list:longest
+set showcmd
+set showtabline=2
+set title
+set list
+set listchars=tab:>-,trail:-,extends:>,precedes:<
+set linespace=2
+set laststatus=2
+" 折り返された行の先頭に表示する文字列
+set showbreak=\
+" 印字不可能文字は16進数で表示
+set display=uhex
+"}}}
+
+" Search {{{
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wrapscan
+"}}}
+
+" Edit {{{
+set fileformats=unix,dos,mac
+set infercase
+set ambiwidth=double
+set foldenable
+set foldmethod=marker
+set foldcolumn=1
+set hidden
+set autoread
+set expandtab
+set tabstop=4
+set matchpairs=(:),[:],{:},<:>
+set splitbelow
+set splitright
+set scrolloff=999
+set backspace=indent,eol,start
+set browsedir=buffer
+set virtualedit=all
+set helplang=ja,en
+set report=0
+
+set noerrorbells
+set novisualbell
+set t_vb=
+"}}}
+
+" Backup {{{
+set nobackup
+set noswapfile
+set nowritebackup
+"}}}
+
+" Autocmd {{{
+
+augroup SetFileIndent
+  autocmd!
+  autocmd FileType vim setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType python setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType c setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType zsh setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType sh setlocal sw=4 sts=4 ts=4 et
+augroup END
+
+" xml,htmlのクローズタグ補完
+augroup AutoTagClose
+  autocmd!
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
+"}}}
+
+" Key Bindings {{{
+
+inoremap jj <Esc>
+
+" 論理移動
+nnoremap j gj
+nnoremap k gk
+
+nnoremap Y y$
+
+" 検索ハイライト消す
+nnoremap <esc><esc> :<C-u>nohlsearch<CR>
+
+" スクロール
+nnoremap <C-j> <C-f>
+nnoremap <C-k> <C-b>
+
+nnoremap <Tab> %
+nnoremap <Tab> %
+
+" 先頭に戻る
+inoremap <silent><C-a> <C-o>^
+inoremap <silent><C-e> <C-o>$
+
+" vimrc編集
+nnoremap <Leader>e :e $MYVIMRC<CR>
+nnoremap <Leader>ep :e $MYVIMRC.plugins<CR>
+nnoremap <Leader>es :e $MYVIMRC.plugins_setting<CR>
+
+" コマンドモードをEmacs風に
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-d> <Del>
+cnoremap <C-h> <BS>
+
+" Indent
+nnoremap > >>
+nnoremap < <<
+
+" 自動エスケープ
+cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr>? getcmdtype() == '?' ? '\?' : '?'
+
+" 日付埋め込み
+inoremap <expr> <Leader>df strftime('%Y-%m-%d %H:%M:%S')
+inoremap <expr> <Leader>dd strftime('%Y-%m-%d')
+inoremap <expr> <Leader>dt strftime('%H:%M:%S')
+cnoremap <expr> <Leader>dd strftime('%Y-%m-%d')
+
+" 最後に変更したテキスト選択
+nnoremap gc `[v`]
+vnoremap gc :<C-u>normal gc<Enter>
+onoremap gc :<C-u>normal gc<Enter>
+
+"}}}
