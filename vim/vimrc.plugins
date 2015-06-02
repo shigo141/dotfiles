@@ -10,6 +10,11 @@ NeoBundle 'kannokanno/previm'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle 'osyo-manga/vim-anzu'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'Shougo/unite.vim', {'depends': 'Shougo/neomru.vim'}
+NeoBundle 'Shougo/unite-outline', {'depends': 'Shougo/unite.vim'}
 
 NeoBundle 'Shougo/vimproc', {
       \ 'build': {
@@ -34,6 +39,17 @@ NeoBundleLazy 'elzr/vim-json',{
       \ 'autoload': {
       \   'filetypes': 'json',
       \}}
+NeoBundleLazy 'mattn/emmet-vim', {
+      \ 'autoload': {
+      \   'filetypes': 'html'
+      \ }}
+
+" textobject
+NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'kana/vim-textobj-function', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'kana/vim-textobj-line', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'thinca/vim-textobj-function-javascript', {'depends': 'kana/vim-textobj-function'}
+NeoBundle 'osyo-manga/vim-textobj-multiblock', {'depends': 'kana/vim-textobj-function'}
 
 " Colorscheme
 NeoBundle 'nanotech/jellybeans.vim'

@@ -41,11 +41,18 @@ if neobundle#tap('simple-javascript-indenter')
   call neobundle#untap()
 endif
 
+function! s:open_current(path)
+  let path = 'file://localhost/' . expand(a:path)
+  execute 'OpenBrowser' path
+endfunction
+
 " open-browser
 if neobundle#tap('open-browser.vim')
   function! neobundle#tapped.hooks.on_source(bundle)
     nmap <Leader>os <Plug>(openbrowser-smart-search)
     vmap <Leader>os <Plug>(openbrowser-smart-search)
+
+    nmap <Leader>oc :<C-u>call <SID>open_current(expand('%:p'))<CR>
   endfunction
   call neobundle#untap()
 endif
@@ -75,3 +82,66 @@ if neobundle#tap('vim-watchdogs')
   call neobundle#untap()
 endif
 
+" vim-textobj-multiblock
+if neobundle#tap('vim-textobj-multiblock')
+  function! neobundle#tapped.hooks.on_source(bundle)
+    omap ab <Plug>(textobj-multiblock-a)
+    omap ib <Plug>(textobj-multiblock-i)
+    vmap ab <Plug>(textobj-multiblock-a)
+    vmap ab <Plug>(textobj-multiblock-i)
+  endfunction
+  call neobundle#untap()
+endif
+
+" emmet-vim
+if neobundle#tap('emmet-vim')
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:user_emmet_leader_key = '<C-c>'
+    let g:user_emmet_settings = {
+          \ 'variables' : {
+          \   'lang' : 'ja'
+          \ },
+          \ 'html' : {
+          \   'filters' : 'html',
+          \   'indentation' : '    '
+          \ }
+          \}
+  endfunction
+  call neobundle#untap()
+endif
+
+" incsearch.vim
+if neobundle#tap('incsearch.vim')
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:incsearch#auto_nohlsearch = 1
+    map / <Plug>(incsearch-forward)
+    map ? <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+    map n <Plug>(incsearch-nohl-n)
+    nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+    map N <Plug>(incsearch-nohl-N)
+    nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+    map * <Plug>(incsearch-nohl-*)
+    map # <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#)
+  endfunction
+  call neobundle#untap()
+endif
+
+" unite.vim
+if neobundle#tap('unite.vim')
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:unite_source_file_mru_limit = 200
+    let g:unite_data_directory = $VIM_CACHE. '/.unite'
+
+    nnoremap [unite] <Nop>
+    nmap <Space>u [unite]
+
+    nnoremap <silent> [unite]f :<C-u>Unite buffer<CR>
+    nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+    nnoremap <silent> [unite]s :<C-u>Unite source<CR>
+    nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
+  endfunction
+  call neobundle#untap()
+endif

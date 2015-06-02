@@ -1,7 +1,7 @@
 "======================================
 " shigo's vimrc
 " Platform: MacOSX and Linux
-" Last Updated: 2015-02-01 16:04:48
+" Last Updated: 2015-03-02 23:46:25
 "======================================
 
 if &compatible
@@ -19,6 +19,7 @@ scriptencoding utf-8
 
 " 各種変数
 let $DOTVIM = expand('~/.vim')
+let $VIM_CACHE = $DOTVIM. '/cache'
 let $VIM_BUNDLE = $DOTVIM. '/bundle'
 let $NEOBUNDLE_DIR = $VIM_BUNDLE. '/neobundle'
 
