@@ -4,9 +4,9 @@
 
 sudo apt-get build-dep -y vim
 
-sudo apt-get install -y libxmu-dev libgtk2.0-dev libxpm-dev mercurial python3-dev
+sudo apt-get install -y libxmu-dev libgtk2.0-dev libxpm-dev python3-dev
 
-hg clone https://vim.googlecode.com/hg/ vim
+git clone https://github.com/vim/vim
 
 cd vim
 
