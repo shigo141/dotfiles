@@ -1,7 +1,7 @@
 "======================================
 " shigo's vimrc
-" Platform: MacOSX and Linux
-" Last Updated: 2015-03-02 23:46:25
+" Platform: MacOSX and Linux, Windows
+" Last Updated: 2015-07-05 14:20:06
 "======================================
 
 if &compatible
@@ -9,6 +9,8 @@ if &compatible
 endif
 
 let g:mapleader = ','
+
+let s:is_windows = has('win32') || has('win64')
 
 " Encoding
 set encoding=utf-8
@@ -18,7 +20,11 @@ set fileencodings=utf-8,ucs-bom,euc-jp
 scriptencoding utf-8
 
 " 各種変数
-let $DOTVIM = expand('~/.vim')
+if s:is_windows
+  let $DOTVIM = expand('~/vimfiles')
+else
+  let $DOTVIM = expand('~/.vim')
+endif
 let $VIM_CACHE = $DOTVIM. '/cache'
 let $VIM_BUNDLE = $DOTVIM. '/bundle'
 let $NEOBUNDLE_DIR = $VIM_BUNDLE. '/neobundle'
@@ -108,6 +114,10 @@ set browsedir=buffer
 set virtualedit=all
 set helplang=ja,en
 set report=0
+
+if s:is_windows
+  set shellslash
+endif
 
 set noerrorbells
 set novisualbell
