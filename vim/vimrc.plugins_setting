@@ -6,7 +6,7 @@
 if neobundle#tap('memolist.vim')
   function! neobundle#tapped.hooks.on_source(bundle)
     let g:memolist_memo_suffix = 'md'
-    let g:memolist_template_dir_path = '~/.vim/template/memo'
+    let g:memolist_template_dir_path =  $DOTVIM.'/template/memo'
 
     nnoremap <Leader>mn :MemoNew<CR>
     nnoremap <Leader>ml :MemoList<CR>

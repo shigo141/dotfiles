@@ -1,7 +1,7 @@
 "======================================
 " shigo's vimrc
 " Platform: MacOSX and Linux, Windows
-" Last Updated: 2015-07-05 14:20:06
+" Last Updated: 2015-07-10 00:26:53
 "======================================
 
 if &compatible
@@ -25,6 +25,7 @@ if s:is_windows
 else
   let $DOTVIM = expand('~/.vim')
 endif
+
 let $VIM_CACHE = $DOTVIM. '/cache'
 let $VIM_BUNDLE = $DOTVIM. '/bundle'
 let $NEOBUNDLE_DIR = $VIM_BUNDLE. '/neobundle'
@@ -50,8 +51,8 @@ endif
 " Plugins {{{
 call neobundle#begin($VIM_BUNDLE)
 
-call s:load_src('~/.vim/vimrc.plugins')
-call s:load_src('~/.vim/vimrc.plugins_setting')
+call s:load_src($DOTVIM. '/vimrc.plugins')
+call s:load_src($DOTVIM. '/vimrc.plugins_setting')
 
 call neobundle#end()
 
