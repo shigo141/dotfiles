@@ -1,7 +1,5 @@
 "======================================
 " shigo's vimrc
-" Platform: MacOSX and Linux, Windows
-" Last Updated: 2015-07-10 00:26:53
 "======================================
 
 if &compatible
@@ -15,7 +13,7 @@ let s:is_windows = has('win32') || has('win64')
 " Encoding
 set encoding=utf-8
 set termencoding=utf-8
-set fileencodings=utf-8,ucs-bom,euc-jp
+set fileencodings=utf-8,cp932,ucs-bom,euc-jp
 
 scriptencoding utf-8
 
@@ -133,6 +131,11 @@ set nowritebackup
 
 " Autocmd {{{
 
+augroup FileRecognize
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+
 augroup SetFileIndent
   autocmd!
   autocmd FileType vim setlocal sw=2 sts=2 ts=2 et
@@ -144,6 +147,7 @@ augroup SetFileIndent
   autocmd FileType javascript setlocal sw=4 sts=4 ts=4 et
   autocmd FileType zsh setlocal sw=4 sts=4 ts=4 et
   autocmd FileType sh setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType sql setlocal sw=4 sts=4 ts=4 et
 augroup END
 
 " xml,htmlのクローズタグ補完
@@ -178,6 +182,9 @@ nnoremap <Tab> %
 " 先頭に戻る
 inoremap <silent><C-a> <C-o>^
 inoremap <silent><C-e> <C-o>$
+inoremap <silent><C-f> <C-o>w
+inoremap <silent><C-b> <C-o>b
+inoremap <silent><c-d> <C-o>x
 
 " vimrc編集
 nnoremap <Leader>e :e $MYVIMRC<CR>
@@ -210,5 +217,21 @@ cnoremap <expr> <Leader>dd strftime('%Y-%m-%d')
 nnoremap gc `[v`]
 vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
+
+" ウィンドウ分割
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+" ウィンドウ移動
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+" ウィンドウサイズ
+nnoremap <S-h> <C-w><<CR>
+nnoremap <S-l> <C-w>><CR>
+nnoremap <S-k> <C-w>-<CR>
+nnoremap <S-j> <C-w>+<CR>
+
+inoremap <C-@> <C-x><C-o>
 
 "}}}
